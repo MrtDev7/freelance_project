@@ -29,6 +29,8 @@ class DeviceChecker extends StatelessWidget {
   }
 
   Future<bool> _checkDevice(Size size) async {
+    double screenWith = 700;
+
     if (UniversalPlatform.isWeb &&
         UniversalPlatform.isWindows &&
         UniversalPlatform.isMacOS &&
@@ -40,6 +42,9 @@ class DeviceChecker extends StatelessWidget {
     final isPhysicalDevice = await _isPhysicalDevice();
 
     if (isPhysicalDevice) {
+      if (size.width >= screenWith) {
+        return false;
+      }
       return true;
     } else {
       return false;
